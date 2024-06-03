@@ -11,7 +11,14 @@ class TaskViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Task.objects.filter(created_by=self.request.user)
+        user = self.request.user
+        queryset = Task.objects.filter(created_by=user)
+
+        # Check if 'status' is provided as a query parameter
+        status_param = self.request.query_params.get('status')
+        if status_param is not None:
+            queryset = queryset.filter(status=status_param)
+        return queryset
 
     def perform_create(self, serializer):
         # Associate the task with the authenticated user
