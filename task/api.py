@@ -12,12 +12,15 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = Task.objects.filter(created_by=user)
+        queryset = Task.objects.filter(created_by=user, is_active=True)
 
         # Check if 'status' is provided as a query parameter
         status_param = self.request.query_params.get('status')
         if status_param is not None:
-            queryset = queryset.filter(status=status_param)
+            if status_param == 9:
+                queryset = queryset.filter(is_active=False)
+            else:
+                queryset = queryset.filter(status=status_param)
         return queryset
 
     def perform_create(self, serializer):
