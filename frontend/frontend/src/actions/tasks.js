@@ -4,9 +4,14 @@ import { createMessage, returnErrors } from "./messages";
 
 import { tokenConfig } from "./auth";
 
-export const getTasks = () => (dispatch, getState) => {
+export const getTasks = (statusFilter) => (dispatch, getState) => {
+  var url =
+    statusFilter === null
+      ? "/api/tasks/"
+      : `/api/tasks/?status=${statusFilter}`;
+
   axios
-    .get("/api/tasks/", tokenConfig(getState))
+    .get(url, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_TASKS,
