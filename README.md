@@ -1,6 +1,6 @@
-# Application Name
+# Simple To Do App
 
-This is a web application built with Django Rest Framework for the backend and ReactJS for the frontend.
+This is a Simple To-do web application built with Django Rest Framework for the backend and ReactJS for the frontend.
 
 ## Getting Started
 
