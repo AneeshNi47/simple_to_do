@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { registerUser } from "../../actions/auth";
 
 export class Register extends Component {
@@ -97,6 +97,9 @@ export class Register extends Component {
               <Button variant="teal" type="submit" size="lg" block>
                 Register
               </Button>
+              <Link to="/login" variant="teal" size="lg" block>
+                Already Have an Account? Login!
+              </Link>
             </Form>
           </>
         )}
